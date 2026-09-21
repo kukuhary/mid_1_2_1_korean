@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>2026학년도 중간고사 대비 국어 실전 모의 평가 15제 (v11 실전 시험지형)</title>
+<style>
+  @page {
+    size: A4;
+    margin: 12mm 10mm 12mm 10mm;
+    @bottom-center {
+      content: "- " counter(page) " -";
+      font-size: 8.5pt;
+      font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+      color: #333;
+    }
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    font-family: 'Malgun Gothic', '맑은 고딕', 'Batang', '바탕', sans-serif;
+    color: #000;
+    line-height: 1.75;
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  /* 1단 전폭 헤더 박스 */
+  .header-box {
+    border: 2px solid #000;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    text-align: center;
+    background-color: #fff;
+  }
+  .header-title {
+    font-size: 15.5pt;
+    font-weight: bold;
+    margin: 0 0 6px 0;
+    letter-spacing: -0.5px;
+  }
+  .header-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+    font-size: 8.8pt;
+  }
+  .header-info-table td {
+    border: 1px solid #444;
+    padding: 4px 8px;
+    text-align: center;
+    background-color: #f7f7f7;
+  }
+  .header-info-table td.label {
+    font-weight: bold;
+    background-color: #eaeaea;
+    width: 14%;
+  }
+
+  /* 섹션 구분 바 (흑백) */
+  .section-bar {
+    font-size: 10.2pt;
+    font-weight: bold;
+    border-top: 1.5px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 5px 8px;
+    margin: 10px 0 10px 0;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* 2단 레이아웃 컬럼 설정 */
+  .two-column-layout {
+    column-count: 2;
+    column-gap: 8mm;
+    column-rule: 0.8px solid #777;
+    text-align: justify;
+  }
+
+  /* 지문 박스 (흑백) */
+  .passage-box {
+    border: 1.2px solid #333;
+    background-color: #fafafa;
+    padding: 9px 11px;
+    margin: 0 0 14px 0;
+    font-size: 9.3pt;
+    line-height: 1.72;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+  }
+  .passage-header {
+    font-weight: bold;
+    font-size: 9.6pt;
+    text-align: center;
+    margin-bottom: 5px;
+    border-bottom: 1px dashed #666;
+    padding-bottom: 3px;
+  }
+
+  /* 개별 문제 박스 */
+  .question {
+    margin-bottom: 22px;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+  }
+  .q-title {
+    font-weight: bold;
+    font-size: 9.8pt;
+    margin-bottom: 5px;
+    line-height: 1.62;
+  }
+  .diff-tag {
+    display: inline-block;
+    border: 1px solid #000;
+    background: #eaeaea;
+    font-size: 7.8pt;
+    font-weight: bold;
+    padding: 0px 4px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* 선택지 스타일 */
+  .choices {
+    margin-left: 2px;
+    margin-top: 4px;
+  }
+  .choice-item {
+    margin-bottom: 4px;
+    font-size: 9.2pt;
+    text-indent: -1.3em;
+    padding-left: 1.3em;
+    line-height: 1.62;
+  }
+
+  /* 보기 박스 (흑백) */
+  .view-box {
+    border: 1px solid #555;
+    background-color: #f5f5f5;
+    padding: 7px 9px;
+    margin: 5px 0 8px 0;
+    font-size: 8.8pt;
+    line-height: 1.62;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+  }
+  .view-title {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 3px;
+    font-size: 9pt;
+  }
+
+  /* 페이지 넘김 */
+  .page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  /* 정답표 (흑백) */
+  table.ans-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 14px 0;
+    font-size: 8.6pt;
+  }
+  table.ans-table th, table.ans-table td {
+    border: 1px solid #333;
+    padding: 5px 6px;
+    text-align: center;
+  }
+  table.ans-table th {
+    background-color: #e5e5e5;
+    font-weight: bold;
+  }
+  table.ans-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  /* 상세 해설 아이템 (흑백 카드) */
+  .expl-card {
+    border: 1px solid #777;
+    background-color: #fff;
+    padding: 8px 10px;
+    margin-bottom: 12px;
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+    font-size: 8.8pt;
+    line-height: 1.65;
+  }
+  .expl-card-header {
+    font-weight: bold;
+    font-size: 9.4pt;
+    border-bottom: 1px solid #999;
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tag {
+    display: inline-block;
+    border: 1px solid #222;
+    background: #f0f0f0;
+    color: #000;
+    padding: 1px 5px;
+    font-size: 8pt;
+    font-weight: bold;
+    border-radius: 2px;
+  }
+  .expl-row {
+    margin-bottom: 4px;
+  }
+  .expl-label {
+    font-weight: bold;
+    display: block;
+    margin-top: 3px;
+    color: #111;
+  }
+  .expl-wrong-list {
+    margin: 2px 0 0 0;
+    padding-left: 1.2em;
+  }
+  .expl-wrong-list li {
+    margin-bottom: 2px;
+  }
+</style>
+</head>
+<body>
+
+<!-- [1부] 문제지 헤더 -->
+<div class="header-box">
+  <div class="header-title">2026학년도 중간고사 대비 국어 실전 평가원형 모의고사 [v11]</div>
+  <table class="header-info-table">
+    <tr>
+      <td class="label">교과서</td>
+      <td>2022 개정 미래엔(신유식) 국어 1-1 / 1-2</td>
+      <td class="label">출제 범위</td>
+      <td>1-1 (1단원, 12문항) + 2-2 (2단원, 3문항)</td>
+      <td class="label">문항 구성</td>
+      <td>전 문항 객관식 15제 (5지 선다형)</td>
+    </tr>
+    <tr>
+      <td class="label">제한 시간</td>
+      <td>45분</td>
+      <td class="label">수험 번호</td>
+      <td></td>
+      <td class="label">성 명</td>
+      <td></td>
+    </tr>
+  </table>
+</div>
+
+<div class="section-bar">
+  <span>[제 1 부] 실전 문제지 (01 ~ 15)</span>
+  <span>중학교 1학년 국어</span>
+</div>
+
+<!-- 2단 본문 시작 -->
+<div class="two-column-layout">
+
+  <!-- 지문 1 (01~02) -->
+  <div class="passage-box">
+    <div class="passage-header">※ 다음 시를 읽고 물음에 답하시오. (01~02)</div>
+    <div style="text-align:center; font-weight:bold; margin-bottom:2px;">길</div>
+    <div style="text-align:right; font-size:7.5pt; margin-bottom:4px;">김종상</div>
+    길은 포도 덩굴<br>
+    몇백 년이나 자라<br>
+    땅덩이를 다 덮었다<br><br>
+    이 덩굴 가지마다<br>
+    포도송이 같은 마을이 있고<br>
+    포도알 같은 집들이 달렸다<br><br>
+    포도알이 늘 때마다<br>
+    포도송이는 커 가고<br>
+    갈봄 없이 자라 가는<br><br>
+    이 덩굴을 통하여<br>
+    사람과 사람이 도와 가고<br>
+    마을과 마을은 이어져서<br><br>
+    세계는 한 덩이 과일로<br>
+    토실토실 익어 가고 있는 것이다.
+  </div>
+
+  <!-- 문항 01 -->
+  <div class="question">
+    <div class="q-title">1. 윗글에 쓰인 비유 표현에 대한 설명으로 가장 적절한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① 1연의 '길은 포도 덩굴'은 연결어를 활용하여 두 대상을 직접 연결한 직유법이다.</div>
+      <div class="choice-item">② 2연의 '포도송이 같은 마을'은 이어 주는 말 없이 대상의 속성을 빗댄 은유법이다.</div>
+      <div class="choice-item">③ 1연의 '포도 덩굴'과 5연의 '한 덩이 과일'은 모두 'A는 B이다' 형태로 대상을 빗댄 은유법에 해당한다.</div>
+      <div class="choice-item">④ 3연에서는 사람이 아닌 대상을 사람처럼 행동하게 하는 의인법이 주로 쓰였다.</div>
+      <div class="choice-item">⑤ 5연의 '토실토실'은 소리를 흉내 낸 의성어로 시적 대상의 청각적 이미지를 살리고 있다.</div>
+    </div>
+  </div>
+
+  <!-- 문항 02 -->
+  <div class="question">
+    <div class="q-title">2. 윗글(김종상, 〈길〉)의 공간적 특징과 시구에 대한 이해로 가장 적절한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① 집(포도알)에서 마을(포도송이), 길(포도 덩굴)을 거쳐 세계(한 덩이 과일)로 공간이 점차 넓어지며 평화롭고 조화로운 세상을 노래하고 있다.</div>
+      <div class="choice-item">② 공간의 배경이 넓은 세계에서 개인의 집으로 점차 좁혀지며 현대인의 외로움과 쓸쓸함을 나타내고 있다.</div>
+      <div class="choice-item">③ 3연의 '포도알이 늘 때마다'는 도시화로 인해 전통 농촌 마을이 점차 사라져 가는 안타까운 현실을 의미한다.</div>
+      <div class="choice-item">④ 4연의 '이 덩굴'은 사람과 사람 사이의 교류와 소통을 가로막는 부정적인 장애물을 뜻한다.</div>
+      <div class="choice-item">⑤ 5연의 '한 덩이 과일'은 자연과 인간이 조화를 이루지 못하고 서로 대립하는 모습을 나타낸다.</div>
+    </div>
+  </div>
+
+  <!-- 지문 2 (03~04) -->
+  <div class="passage-box">
+    <div class="passage-header">※ 다음 시를 읽고 물음에 답하시오. (03~04)</div>
+    <div style="text-align:center; font-weight:bold; margin-bottom:2px;">햇비</div>
+    <div style="text-align:right; font-size:7.5pt; margin-bottom:4px;">윤동주</div>
+    [1연]<br>
+    아씨처럼 나린다<br>
+    보슬보슬 햇비<br>
+    맞아 주자 다 같이<br>
+    옥수숫대처럼 크게<br>
+    닷 자 엿 자 자라게<br>
+    해님이 웃는다<br>
+    나 보고 웃는다.<br><br>
+    [2연]<br>
+    하늘 다리 놓였다<br>
+    알롱알롱 무지개<br>
+    노래하자 즐겁게<br>
+    동무들아 이리 오나<br>
+    다 같이 춤을 추자<br>
+    해님이 웃는다<br>
+    즐거워 웃는다.
+  </div>
+
+  <!-- 문항 03 -->
+  <div class="question">
+    <div class="q-title">3. 윗글(윤동주, 〈햇비〉)의 표현상 특징으로 적절하지 <u>않은</u> 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① '아씨처럼 나린다'는 '처럼'이라는 말을 사용하여 햇비가 곱고 조용하게 내리는 모습을 직유법으로 나타냈다.</div>
+      <div class="choice-item">② '해님이 웃는다'는 자연물인 해를 사람처럼 나타낸 의인법을 활용하여 밝고 화창한 분위기를 만들었다.</div>
+      <div class="choice-item">③ '하늘 다리'는 비 갠 하늘에 걸린 무지개를 이어 주는 말 없이 빗댄 은유법에 해당한다.</div>
+      <div class="choice-item">④ '옥수숫대처럼 크게'는 거센 비바람 때문에 곡식이 쓰러져 버린 절망적인 상황을 빗대어 표현한 것이다.</div>
+      <div class="choice-item">⑤ '보슬보슬', '알롱알롱'과 같이 말의 소리와 느낌을 살린 감각적 시어를 활용하여 장면에 생동감을 주었다.</div>
+    </div>
+  </div>
+
+  <!-- 문항 04 -->
+  <div class="question">
+    <div class="q-title">4. 김종상의 〈길〉과 윤동주의 〈햇비〉에서 말의 가락(운율)을 느끼게 하는 요소를 비교한 것으로 가장 적절한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① 두 시 모두 한 줄의 글자 수를 세 글자, 네 글자로 엄격하게 맞춘 규칙적인 정형시이다.</div>
+      <div class="choice-item">② 〈길〉은 '포도알이 늘 때마다 / 포도송이는 커 가고'처럼 비슷한 문장 구조를 반복하였고, 〈햇비〉는 흉내 내는 말과 청유형 끝말('~자')을 반복하여 리듬감을 형성하였다.</div>
+      <div class="choice-item">③ 〈길〉은 각 줄의 첫 글자마다 같은 글자를 통일하여 썼고, 〈햇비〉는 한 번 쓴 표현은 다시 쓰지 않고 다양하게 바꾸어 썼다.</div>
+      <div class="choice-item">④ 〈길〉은 슬프고 어두운 정서를 드러내기 위해, 〈햇비〉는 웅장하고 엄숙한 느낌을 주기 위해 독특한 리듬을 사용하였다.</div>
+      <div class="choice-item">⑤ 두 시 모두 소리나 모양을 흉내 내는 말을 전혀 쓰지 않고 평범한 설명조의 문장으로만 이어 나갔다.</div>
+    </div>
+  </div>
+
+  <!-- 문항 05 -->
+  <div class="question">
+    <div class="q-title">5. 문학 작품에 쓰이는 '상징(Symbol)'의 특성에 대한 설명으로 가장 적절한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① 표현하려는 원래의 생각과 빗대는 대상이 작품 겉표면에 둘 다 명확하게 드러난다.</div>
+      <div class="choice-item">② 직유법과 마찬가지로 '처럼', '듯이'와 같은 이어 주는 말을 문장에 반드시 갖추어야 한다.</div>
+      <div class="choice-item">③ 작품에 쓰인 구체적 사물은 모든 독자에게 오직 한 가지 고정된 의미로만 똑같이 해석되어야 한다.</div>
+      <div class="choice-item">④ 덧셈 기호(+)나 뺄셈 기호(-)처럼 수학적인 계산이나 정보 전달을 위해 만든 간단한 부호이다.</div>
+      <div class="choice-item">⑤ 사랑이나 평화처럼 눈에 보이지 않는 추상적인 생각을 구체적인 사물로 나타낸 것으로, 겉으로 드러나지 않은 의미를 독자가 다양하고 깊이 있게 해석할 수 있다.</div>
+    </div>
+  </div>
+
+  <!-- 지문 3 (06) -->
+  <div class="passage-box">
+    <div class="passage-header">※ 다음 시를 읽고 물음에 답하시오. (06)</div>
+    <div style="text-align:center; font-weight:bold; margin-bottom:2px;">사랑하는 별 하나</div>
+    <div style="text-align:right; font-size:7.5pt; margin-bottom:4px;">이성선</div>
+    [1연]<br>
+    나도 별과 같은 사람이<br>
+    될 수 있을까.<br>
+    외로워 쳐다보면<br>
+    눈 마주쳐 마음 비춰 주는<br>
+    그런 사람이 될 수 있을까.<br><br>
+    [2연]<br>
+    나도 꽃이 될 수 있을까.<br>
+    세상일이 괴로워 쓸쓸히 밖으로 나서는 날에<br>
+    가슴에 화안히 안기어<br>
+    눈물짓듯 웃어 주는<br>
+    하얀 들꽃이 될 수 있을까.<br><br>
+    [3연]<br>
+    가슴에 사랑하는 별 하나를 갖고 싶다.<br>
+    외로울 때 부르면 다가오는<br>
+    별 하나를 갖고 싶다.<br>
+    마음 어두운 밤 깊을수록<br>
+    우러러 쳐다보면<br>
+    반짝이는 그 맑은 눈빛으로 나를 씻어<br>
+    길을 비추어 주는<br>
+    그런 사람 하나 갖고 싶다.
+  </div>
+
+  <!-- 문항 06 -->
+  <div class="question">
+    <div class="q-title">6. 윗글(이성선, 〈사랑하는 별 하나〉)에 나타난 '별'과 '꽃'의 상징적 의미와 화자의 태도로 가장 적절한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① 외롭고 힘든 사람에게 위로와 길잡이가 되어 주는 존재를 뜻하며, 화자는 남에게 그런 따뜻한 사람이 되고 싶어 하면서 동시에 자신에게도 그런 사람이 있기를 바라고 있다.</div>
+      <div class="choice-item">② 시간이 흐르면 시들어 버리는 허무한 자연물로, 화자가 각박한 현실에 대해 느끼는 깊은 실망감을 나타낸다.</div>
+      <div class="choice-item">③ 너무 높은 곳에 있어 인간의 힘으로는 도저히 닿을 수 없는 존재로, 화자가 현실에서 느끼는 좌절감과 공포심을 나타낸다.</div>
+      <div class="choice-item">④ 세상에서 출세하여 많은 돈을 버는 부유한 삶을 뜻하며, 화자가 물질적으로 성공하고 싶어 하는 욕망을 나타낸다.</div>
+      <div class="choice-item">⑤ 다른 사람들에게 의지하지 않고 혼자서만 외롭게 살아가겠다는 화자의 굳은 결심을 나타낸다.</div>
+    </div>
+  </div>
+
+  <!-- 지문 4 (07) -->
+  <div class="passage-box">
+    <div class="passage-header">※ 다음 글을 읽고 물음에 답하시오. (07)</div>
+    틸틸과 미틸은 ‘엄마의 행복’에게 안겨 물었어요.<br>
+    “여기에 파랑새가 있나요?”<br>
+    “여기는 행복이 넘쳐 나는 곳이라서 파랑새가 필요 없단다.” (중략)<br>
+    틸틸은 엄마가 깨우는 소리에 벌떡 일어났어요. 어찌 된 일인지 빛의 요정도, 모자도 보이지 않았어요. 바로 그때, 방문을 열고 한 할머니가 들어왔어요. 파랑새를 부탁한 요술쟁이 할머니와 너무나 닮았지요.<br>
+    “나는 이웃집에 사는데, 새를 빌리러 왔단다. 앓아누운 내 딸이 새를 갖고 싶어 하거든.”<br>
+    틸틸은 새장을 바라보고 깜짝 놀랐어요.<br>
+    “아, 파랑새다! 그렇게 찾았는데. 파랑새가 우리 집에 있었어!”<br>
+    틸틸은 파랑새를 할머니에게 주었어요. 다음날, 이웃집 할머니를 따라 여자아이가 찾아왔어요.<br>
+    “고마워. 파랑새를 보고 아픈 게 다 나았어.” 빛의 요정을 꼭 닮은 여자아이가 파랑새를 안고 말했어요.<br>
+    미틸은 파랑새를 쓰다듬어 주려고 다가갔어요. 그 순간, 파랑새는 그만 포르르 날아가 버렸지요. 여자아이가 울음을 터뜨리자, 틸틸이 달래 주었어요.<br>
+    “괜찮아. 내가 또 파랑새를 찾아 줄게. 파랑새는 우리 가까이에 있으니까.”<br>
+    <div style="text-align: right; font-size: 7.5pt; margin-top: 4px;">- 모리스 마테를링크, 〈파랑새〉에서</div>
+  </div>
+
+  <!-- 문항 07 -->
+  <div class="question">
+    <div class="q-title">7. 윗글에서 틸틸의 말 "파랑새는 우리 가까이에 있으니까."에 담긴 상징적 의미와 교훈으로 가장 적절한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① 파랑새는 손에 잡히지 않는 헛된 꿈을 뜻하므로, 이룰 수 없는 희망을 버리고 포기해야 한다.</div>
+      <div class="choice-item">② 참된 행복은 개인의 노력으로는 찾을 수 없으므로, 신비한 마법의 힘에만 의지해야 한다.</div>
+      <div class="choice-item">③ '파랑새'는 '행복'을 상징하며, 사람들이 멀리서 찾아 헤매는 진정한 행복은 먼 곳이 아닌 바로 우리 주변의 일상에 존재한다는 깨달음을 준다.</div>
+      <div class="choice-item">④ 인간의 무분별한 사냥으로 희귀한 새들이 사라지고 있으므로 자연으로 돌려보내야 한다는 생태적 교훈을 준다.</div>
+      <div class="choice-item">⑤ 이웃 간에 물건을 빌려줄 때는 반드시 대가를 철저히 계산해야 한다는 교훈을 준다.</div>
+    </div>
+  </div>
+
+  <!-- 문항 08 -->
+  <div class="question">
+    <div class="q-title">8. 교과서에 제시된 '상징 표현을 사용했을 때의 효과'로 가장 적절한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① 작가가 전하고자 하는 생각을 설명문처럼 딱딱하고 직접적으로 전달한다.</div>
+      <div class="choice-item">② 눈에 보이지 않는 생각이나 느낌을 구체적인 사물로 표현하여 독자에게 생생한 느낌을 주고 작품의 의미를 풍부하게 한다.</div>
+      <div class="choice-item">③ 낱말이 원래 지니고 있던 일상적 의미를 완전히 없애 버려 글의 내용을 이해하기 어렵게 만든다.</div>
+      <div class="choice-item">④ 독자의 상상력을 제한하여 오직 한 가지 정답만 생각하도록 강요한다.</div>
+      <div class="choice-item">⑤ 글의 흐름을 뚝뚝 끊어 놓아 독자가 작품에 감정을 이입하지 못하게 방해한다.</div>
+    </div>
+  </div>
+
+  <!-- 지문 5 (09~10) -->
+  <div class="passage-box">
+    <div class="passage-header">※ 다음 자료를 보고 물음에 답하시오. (09~10)</div>
+    <b>[자료 1] 마음중학교 누리집 ➔ 소통 게시판</b><br>
+    • 제목: 제△회 청소년 독후감 쓰기 대회 안내<br>
+    • 내용: 전국 청소년을 대상으로 독후감 대회를 개최합니다. 자세한 요강은 첨부 파일을 확인하세요.<br>
+    [댓글]<br>
+    - 김주연: 질문 있습니다. 참가 신청 서식은 어디서 내려받나요?<br>
+    - 담당자: 게시글 첨부 파일의 '(붙임 1)' 서식을 확인해 보세요.<br><br>
+    <b>[자료 2] 주연이의 개인 블로그</b><br>
+    • 제목: 드디어 독후감을 쓸 작품을 고르다!<br>
+    • 내용: 고민 끝에 생텍쥐페리의 《어린 왕자》를 읽기로 결정했다. 마음에 쏙 든다!<br>
+    • 해시태그: #청소년_독후감_대회 #달빛동_마음중학교_1학년_3반_김주연<br>
+    [댓글]<br>
+    - 이승아: 축하해! 이 게시물 내 블로그로 공유해 갈게.<br>
+    - 박은호: 나도 그 책 읽어 봐야겠다. 게시물 저장 완료!
+  </div>
+
+  <!-- 문항 09 -->
+  <div class="question">
+    <div class="q-title">9. [자료 1]의 '학교 누리집'과 [자료 2]의 '개인 블로그'의 소통 특징을 바르게 비교한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① [자료 1]과 [자료 2] 모두 댓글을 남길 수 없어 글쓴이 혼자서만 일방적으로 소통한다.</div>
+      <div class="choice-item">② [자료 1]은 친구끼리 사적인 장난을 치는 공간이고, [자료 2]는 엄격한 공문서만 올려야 하는 공간이다.</div>
+      <div class="choice-item">③ [자료 1]의 질문과 답변은 작성자 본인만 볼 수 있는 비공개 글이다.</div>
+      <div class="choice-item">④ [자료 1]은 학교 구성원이 공적인 정보를 교환하는 공식적 공간이고, [자료 2]는 개인의 생각과 경험을 표현하며 '공유'와 '저장'으로 소통이 확산되는 개방적 공간이다.</div>
+      <div class="choice-item">⑤ [자료 2]는 개인이 만든 블로그이므로 저작권법을 지키지 않고 남의 자료를 함부로 올려도 된다.</div>
+    </div>
+  </div>
+
+  <!-- 문항 10 -->
+  <div class="question">
+    <div class="q-title">10. [자료 2]에서 주연이가 쓴 해시태그(`#달빛동_마음중학교_1학년_3반_김주연`)의 문제점을 가장 적절하게 지적한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① 검색이 잘 되지 않도록 막아 놓아 블로그 방문자 수를 줄어들게 한다.</div>
+      <div class="choice-item">② 독후감 대회 심사위원이 접수를 확인하기 위해 의무적으로 적도록 한 규칙을 어겼다.</div>
+      <div class="choice-item">③ 해시태그로 쓴 글은 다른 사람에게 절대 노출되지 않으므로 쓸모없는 행동이다.</div>
+      <div class="choice-item">④ 책 제목이나 저자의 이름을 밝히지 않아 저작권을 침해하는 행동이다.</div>
+      <div class="choice-item">⑤ 사는 동네, 학교, 학년, 반, 실명 등 민감한 개인 정보가 노출되어 사생활 침해나 범죄에 악용될 위험이 크다.</div>
+    </div>
+  </div>
+
+  <!-- 문항 11 -->
+  <div class="question">
+    <div class="q-title">11. 교과서에 제시된 '매체의 발달에 따른 소통 방식의 변화'에 대한 설명으로 가장 적절한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① 인쇄 매체(책, 신문)는 전파를 활용하여 전 세계 사람들과 실시간으로 목소리를 주고받게 해 주었다.</div>
+      <div class="choice-item">② 인쇄 매체에서 방송, 인터넷을 거쳐 스마트폰으로 발달함에 따라 시간과 공간의 제약을 벗어나 언제 어디서나 실시간으로 서로 의견을 주고받을 수 있게 되었다.</div>
+      <div class="choice-item">③ 전통적인 라디오나 텔레비전 같은 방송 매체는 시청자가 방송 제작에 직접 참여하여 방송을 실시간으로 바꾸는 쌍방향 매체였다.</div>
+      <div class="choice-item">④ 스마트폰과 모바일 기기가 등장하면서 과거보다 정보가 전달되는 속도가 느려지고 소통 범위가 좁아졌다.</div>
+      <div class="choice-item">⑤ 인터넷과 모바일 매체의 발달로 인해 모든 정보가 소수의 전문가 집단에 의해서만 독점 생산되는 폐쇄적 구조가 굳어졌다.</div>
+    </div>
+  </div>
+
+  <!-- 문항 12 -->
+  <div class="question">
+    <div class="q-title">12. 다음 &lt;보기&gt;의 학생들 중, 교과서에서 강조하는 '바람직한 매체 이용 윤리'를 올바르게 실천한 사람만을 모두 묶은 것은?</div>
+    <div class="view-box">
+      <div class="view-title">&lt;보 기&gt;</div>
+      <b>[민우]</b>: 동아리 발표 보고서를 작성하면서 인터넷에서 가져온 도표와 글의 원작자와 출처를 꼼꼼하게 표기하였다.<br>
+      <b>[서연]</b>: 체육대회에서 친구가 넘어져 우스꽝스러운 표정을 지은 사진을, 친구의 동의 없이 자신의 공개 SNS에 올렸다.<br>
+      <b>[재현]</b>: 유명 연예인에 대한 확인되지 않은 소문을 인터넷에서 보고, 사실 확인 없이 반 친구들의 단체 대화방에 퍼뜨렸다.<br>
+      <b>[수아]</b>: 환경 보호 안내 영상을 만들면서, 원작자가 무료 이용을 허락한 '자유 이용 저작물' 음원을 찾아 규칙에 맞게 사용하였다.
+    </div>
+    <div class="choices">
+      <div class="choice-item">① [민우], [서연]</div>
+      <div class="choice-item">② [서연], [재현]</div>
+      <div class="choice-item">③ [민우], [수아]</div>
+      <div class="choice-item">④ [재현], [수아]</div>
+      <div class="choice-item">⑤ [민우], [재현], [수아]</div>
+    </div>
+  </div>
+
+  <div class="section-bar">
+    <span>[13~15] 2-2 영역 (2단원. 우리가 만드는 세상)</span>
+    <span>중학교 1학년 국어</span>
+  </div>
+
+  <!-- 문항 13 -->
+  <div class="question">
+    <div class="q-title">13. 교과서에 제시된 '대중 매체'와 '개인 인터넷 방송'의 특성과 올바른 이용 태도로 가장 적절한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① 대중 매체는 공적 책임이 크지만 특정 관점으로 치우칠 수 있고, 개인 인터넷 방송은 소통이 자유롭지만 조회 수를 노린 자극적 허위 정보가 퍼질 수 있으므로, 수용자는 정보를 비판적으로 검토하며 받아들여야 한다.</div>
+      <div class="choice-item">② 대중 매체는 전문가들이 제작하므로 보도되는 모든 뉴스를 의심 없이 그대로 사실로 믿어야 한다.</div>
+      <div class="choice-item">③ 개인 인터넷 방송은 개인이 자유롭게 만드는 공간이므로, 다른 사람을 비방하거나 거짓 소문을 퍼뜨려도 처벌받지 않는다.</div>
+      <div class="choice-item">④ 대중 매체는 개인 인터넷 방송에 비해 시청자와의 실시간 대화나 반응 전달이 훨씬 빠르고 편리하다.</div>
+      <div class="choice-item">⑤ 개인 인터넷 방송의 알고리즘 추천 시스템은 모든 이용자에게 항상 균형 잡힌 다각도의 정보만을 골라서 보여 준다.</div>
+    </div>
+  </div>
+
+  <!-- 문항 14 -->
+  <div class="question">
+    <div class="q-title">14. 다음 밑줄 친 낱말 중, 교과서에서 다룬 '차별이나 혐오의 뜻이 담겨 있어 사용을 피해야 할 표현'만을 모두 고른 것은?</div>
+    <div class="view-box">
+      ㉠ 날씨가 추워지자 어머니께서 손을 따뜻하게 감싸 주는 <u>벙어리장갑</u>을 꺼내 주셨다.<br>
+      ㉡ 요즘 사춘기를 겪으며 생각에 잠긴 친구를 보고 반 아이들이 <u>중2병</u>에 걸렸다며 놀렸다.<br>
+      ㉢ 친구들과 분식집에서 메뉴를 고르지 못하고 한참 망설이다가 "나 <u>결정 장애</u>가 있나 봐"라고 말했다.<br>
+      ㉣ 청각·언어 장애인을 차별하는 관습적 언어를 개선하기 위해 배려의 뜻을 담은 <u>손모아장갑</u>이라는 말을 쓰기로 했다.
+    </div>
+    <div class="choices">
+      <div class="choice-item">① ㉠, ㉣</div>
+      <div class="choice-item">② ㉡, ㉢</div>
+      <div class="choice-item">③ ㉡, ㉢, ㉣</div>
+      <div class="choice-item">④ ㉠, ㉡, ㉢</div>
+      <div class="choice-item">⑤ ㉠, ㉡, ㉢, ㉣</div>
+    </div>
+  </div>
+
+  <!-- 문항 15 -->
+  <div class="question">
+    <div class="q-title">15. 교과서에 실린 공익 광고 "우린 톡 쳤을 뿐인데"의 중심 생각과 '존중하며 말하기'에 대한 설명으로 가장 적절한 것은?</div>
+    <div class="choices">
+      <div class="choice-item">① 스마트폰 메신저로 친구에게 보낸 심한 말은 가벼운 장난에 불과하므로 큰 상처를 남기지 않는다.</div>
+      <div class="choice-item">② 사이버 공간의 언어폭력은 글자를 지우면 그만이므로, 신체적 폭력에 비해 크게 걱정할 필요가 없다.</div>
+      <div class="choice-item">③ 친구가 실수를 했을 때 "너 때문에 다 망쳤잖아"라고 직설적으로 소리치는 것이 가장 솔직하고 효과적인 대화법이다.</div>
+      <div class="choice-item">④ 대화할 때 상대방의 기분이나 처지를 배려하는 것은 자기 생각을 당당하게 말하지 못하는 나약한 태도이다.</div>
+      <div class="choice-item">⑤ 가볍게 툭 던진 말 한마디도 상대방에게는 주먹으로 맞은 듯한 깊은 상처를 줄 수 있으므로, 상대의 처지를 공감하고 존중하는 태도로 말해야 한다.</div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ================= [2부] 정답 및 상세 해설집 ================= -->
+<div class="page-break"></div>
+
+<div class="header-box">
+  <div class="header-title">정답 및 상세 해설 [v11: 중1 표준형] (문제를 낸 이유 수록)</div>
+  <table class="header-info-table">
+    <tr>
+      <td class="label">교과서</td>
+      <td>2022 개정 미래엔(신유식) 국어 1-1 / 1-2</td>
+      <td class="label">해설 기준</td>
+      <td>중1 교육과정 성취 기준 및 교과서 학습 목표 기반</td>
+      <td class="label">난이도 배분</td>
+      <td><b>[상] 8문항 | [중] 5문항 | [하] 2문항</b></td>
+    </tr>
+  </table>
+</div>
+
+<div class="section-bar">
+  <span>[제 2 부] 빠른 정답 및 난이도 총괄표</span>
+  <span>전 문항 객관식 5지 선다형</span>
+</div>
+
+<table class="ans-table">
+  <thead>
+    <tr>
+      <th style="width: 7%;">문항</th>
+      <th style="width: 9%;">단원</th>
+      <th style="width: 54%;">교과서 수록 제재 및 핵심 개념</th>
+      <th style="width: 14%;">난이도</th>
+      <th style="width: 16%;">정답</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td><b>01</b></td><td>1-1</td><td>김종상 〈길〉 비유 표현의 원리와 유형 (은유법 vs 직유법)</td><td><b>중</b></td><td><b>③</b></td></tr>
+    <tr><td><b>02</b></td><td>1-1</td><td>김종상 〈길〉 공간적 확장 구조(집➔마을➔길➔세계)와 평화관</td><td><b>상</b></td><td><b>①</b></td></tr>
+    <tr><td><b>03</b></td><td>1-1</td><td>윤동주 〈햇비〉 시적 화자의 시선과 동심의 표현 기법</td><td><b>하</b></td><td><b>④</b></td></tr>
+    <tr><td><b>04</b></td><td>1-1</td><td>김종상 〈길〉 & 윤동주 〈햇비〉 운율 형성 방식(문장 구조, 어미) 비교</td><td><b>상</b></td><td><b>②</b></td></tr>
+    <tr><td><b>05</b></td><td>1-1</td><td>상징(Symbol)의 개념과 특성 (추상적 생각의 구체화 및 다의성)</td><td><b>상</b></td><td><b>⑤</b></td></tr>
+    <tr><td><b>06</b></td><td>1-1</td><td>이성선 〈사랑하는 별 하나〉 시어의 상징적 의미와 화자의 태도</td><td><b>상</b></td><td><b>①</b></td></tr>
+    <tr><td><b>07</b></td><td>1-1</td><td>마테를링크 〈파랑새〉 결말부 대사와 일상 속 '행복'의 상징</td><td><b>중</b></td><td><b>③</b></td></tr>
+    <tr><td><b>08</b></td><td>1-1</td><td>상징 표현이 지닌 문학적 효과와 가치 (교과서 40쪽)</td><td><b>하</b></td><td><b>②</b></td></tr>
+    <tr><td><b>09</b></td><td>1-1</td><td>상호 작용적 매체(학교 누리집 vs 개인 블로그) 소통 특성 비교</td><td><b>상</b></td><td><b>④</b></td></tr>
+    <tr><td><b>10</b></td><td>1-1</td><td>디지털 매체 이용 시 개인 정보 유출(해시태그 실명·학교 노출) 비판</td><td><b>중</b></td><td><b>⑤</b></td></tr>
+    <tr><td><b>11</b></td><td>1-1</td><td>매체 발달사(인쇄➔방송➔인터넷➔모바일)와 시공간 소통 진화</td><td><b>상</b></td><td><b>②</b></td></tr>
+    <tr><td><b>12</b></td><td>1-1</td><td>상호 작용적 매체 이용 윤리 실제 사례 판별 (복합 보기형)</td><td><b>상</b></td><td><b>③</b></td></tr>
+    <tr><td><b>13</b></td><td>2-2</td><td>대중 매체 vs 1인 미디어의 특성과 주체적·비판적 수용 태도</td><td><b>상</b></td><td><b>①</b></td></tr>
+    <tr><td><b>14</b></td><td>2-2</td><td>일상 속 차별·혐오 표현('벙어리장갑', '중2병', '결정 장애') 성찰</td><td><b>중</b></td><td><b>④</b></td></tr>
+    <tr><td><b>15</b></td><td>2-2</td><td>공익 광고 "우린 톡 쳤을 뿐인데" 분석 및 존중하는 말하기</td><td><b>중</b></td><td><b>⑤</b></td></tr>
+  </tbody>
+</table>
+
+<div style="font-size: 8.5pt; text-align: right; margin-top: -8px; margin-bottom: 12px; color: #333;">
+  * <b>난이도 배분</b>: [상] 8문항 (53.3%) | [중] 5문항 (33.3%) | [하] 2문항 (13.3%) &nbsp;|&nbsp; <b>정답 균형</b>: ①: 3개, ②: 3개, ③: 3개, ④: 3개, ⑤: 3개
+</div>
+
+<div class="two-column-layout">
+
+  <!-- 해설 01 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 1] 정답 ③</span>
+      <span class="tag">난이도: 중</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      2022 개정 교육과정 1학년 1학기 1단원의 핵심 성취 기준인 "비유의 특성과 효과에 유의하며 작품을 감상한다"를 평가하기 위함이다. 교과서의 기본 개념인 직유법(~같은)과 은유법(A는 B이다)의 차이를 명확히 구분하고, 학생들이 흔히 혼동하기 쉬운 의태어의 개념을 바르게 정립하도록 돕고자 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      1연의 '길은 포도 덩굴'과 5연의 '세계는 한 덩이 과일로'는 연결어 없이 원관념과 보조 관념을 'A는 B이다' 형태로 빗댄 은유법에 해당하므로 ③이 옳다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>① 연결어가 쓰이지 않은 은유법이다.</li>
+        <li>② '포도송이 같은 마을'은 '~같은'이라는 연결어를 쓴 직유법이다.</li>
+        <li>④ 3연은 의인법이 아니라 '포도알'과 '포도송이'의 점층적 성장을 노래한 부분이다.</li>
+        <li>⑤ '토실토실'은 소리가 아니라 살이 오르거나 알이 찬 모양을 흉내 낸 의태어이다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 02 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 2] 정답 ①</span>
+      <span class="tag">난이도: 상</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      시의 전체적인 공간 전개 구조(집➔마을➔길➔세계)와 작가가 궁극적으로 전하고자 하는 주제 의식을 정밀하게 파악할 수 있는지 평가하기 위함이다. 시어 하나하나의 해석에 그치지 않고 시 전체의 유기적인 구성을 파악하는 능력을 변별하기 위해 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      시는 집(포도알)에서 시작하여 마을(포도송이), 길(포도 덩굴)로 넓어지고, 마침내 세계(한 덩이 과일)로 공간적 범위를 넓혀 간다. 시인은 이를 통해 사람들이 길을 통해 서로 돕고 이어져 하나가 되는 평화롭고 조화로운 세상을 노래하고 있으므로 ①이 정답이다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>② 공간이 좁아지는 것이 아니라 점차 넓어진다.</li>
+        <li>③ 포도알이 늘어나는 것은 마을의 성장과 번영을 뜻하며 농촌의 사라짐을 뜻하지 않는다.</li>
+        <li>④ 길은 사람과 사람을 이어 주는 소통과 화합의 매개체이다.</li>
+        <li>⑤ 갈등과 대립이 아니라 화합과 평화를 의미한다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 03 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 3] 정답 ④</span>
+      <span class="tag">난이도: 하</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      연계 학습 활동에 실린 윤동주의 〈햇비〉에 쓰인 직유법, 의인법, 은유법 등 다양한 비유 표현의 의미를 동심의 눈높이에서 이해하고 있는지 기초적인 감상 능력을 점검하기 위해 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      '옥수숫대처럼 크게 / 닷 자 엿 자 자라게'는 햇비를 맞으며 아이들이 옥수수처럼 쑥쑥 건강하고 씩씩하게 자라기를 바라는 순수한 소망을 나타낸 표현이다. 곡식이 쓰러지는 절망적 상황이라는 설명은 시의 밝고 맑은 분위기와 정반대이므로 ④가 틀렸다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>① '처럼'을 써서 비가 얌전하게 내리는 모습을 나타낸 직유법이다.</li>
+        <li>② 해를 사람처럼 웃는 모습으로 나타낸 의인법이다.</li>
+        <li>③ '하늘 다리'는 비 온 뒤 뜬 무지개를 빗댄 은유법이다.</li>
+        <li>⑤ '보슬보슬', '알롱알롱'은 느낌을 살린 시어로 생동감을 준다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 04 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 4] 정답 ②</span>
+      <span class="tag">난이도: 상</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      두 편의 시(〈길〉, 〈햇비〉)를 비교하여, 시에서 운율(말의 가락)이 만들어지는 구체적인 방법(비슷한 문장의 반복, 흉내 내는 말의 반복, 어미의 반복)을 정확하게 파악하고 있는지 분석적 사고력을 측정하기 위해 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      〈길〉은 '포도알이 늘 때마다 / 포도송이는 커 가고', '사람과 사람이 도와 가고 / 마을과 마을은 이어져서'처럼 짝을 이루는 비슷한 문장 구조를 반복하여 운율을 형성한다. 반면 〈햇비〉는 '보슬보슬', '알롱알롱' 같은 흉내 내는 말과 청유형 어미 '~자'의 반복을 통해 경쾌한 리듬을 만든다. 따라서 ②가 정확하다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>① 두 시 모두 글자 수가 정해진 정형시가 아니라 자유시이다.</li>
+        <li>③ 행의 첫머리마다 같은 글자를 통일하지 않았다.</li>
+        <li>④ 두 시 모두 밝고 따뜻한 희망의 정서를 노래하고 있다.</li>
+        <li>⑤ 〈햇비〉에는 소리와 모양을 흉내 내는 말이 풍부하게 쓰였다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 05 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 5] 정답 ⑤</span>
+      <span class="tag">난이도: 상</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      비유(원관념과 보조 관념이 비교적 명확히 대응)와 상징(원관념은 숨고 구체적 사물만 드러나 다의적으로 해석됨)의 본질적 차이를 중1 눈높이에 맞게 정확히 이해하고 있는지 점검하기 위해 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      상징(Symbol)은 눈에 보이지 않는 사랑, 평화, 자유 등의 생각을 구체적인 사물로 나타내는 표현이다. 겉으로는 구체적인 사물만 드러나고 숨겨진 생각은 직접 나오지 않기 때문에, 독자에 따라 의미를 다양하고 깊이 있게 해석할 수 있다. 따라서 ⑤가 정답이다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>① 상징은 원래의 생각(원관념)을 겉으로 직접 드러내지 않는다.</li>
+        <li>② '처럼', '듯이'는 직유법에서 쓰이며 상징에는 쓰이지 않는다.</li>
+        <li>③ 상징은 독자에 따라 여러 가지 의미로 다양하게 해석될 수 있다.</li>
+        <li>④ 수학 기호는 문학적 상징이 아니라 약속된 기호이다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 06 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 6] 정답 ①</span>
+      <span class="tag">난이도: 상</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      교과서 본문인 이성선의 〈사랑하는 별 하나〉에서 '별'과 '꽃'이 지닌 상징적 함축성을 작품 전체의 맥락 속에서 파악할 수 있는지 평가하기 위함이다. 1~2연의 '남을 위로하는 사람이 되고 싶은 마음'과 3연의 '나를 이끌어 줄 따뜻한 사람을 바라는 마음'을 균형 있게 이해했는지 측정하고자 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      화자는 1~2연에서 외롭고 힘든 사람에게 다가가 '눈 마주쳐 마음 비춰 주는 사람(별)', '화안히 안기어 눈물짓듯 웃어 주는 들꽃' 같은 존재가 되고 싶어 한다. 또한 3연에서는 어두운 밤길을 비추어 줄 '사랑하는 별 하나' 같은 사람을 곁에 두고 싶어 한다. 따라서 이를 정확히 설명한 ①이 정답이다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>② 시들어 버리는 허무함이나 실망감과는 거리가 멀다.</li>
+        <li>③ 공포심이나 좌절감의 대상이 아니라 따뜻한 위로의 대상이다.</li>
+        <li>④ 물질적인 부나 세속적 성공을 바라는 시가 아니다.</li>
+        <li>⑤ 혼자서 살겠다는 것이 아니라 서로 사랑하고 돕는 관계를 바라고 있다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 07 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 7] 정답 ③</span>
+      <span class="tag">난이도: 중</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      연계 활동에 실린 마테를링크의 〈파랑새〉를 통해, 이야기 속 '파랑새'가 상징하는 '행복'의 의미를 파악하고 일상 속 행복의 소중함을 깨달을 수 있는지 확인하기 위해 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      틸틸과 미틸은 파랑새를 찾아 헤맸지만 결국 파랑새는 자신들의 집 새장에 있었음을 알게 된다. 또한 날아간 파랑새를 보며 "파랑새는 우리 가까이에 있으니까"라고 말하는 것은, 진정한 행복은 먼 곳이 아니라 우리 주변의 일상에 늘 존재한다는 교훈을 상징하므로 ③이 정답이다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>①, ②, ④, ⑤는 작품의 본래 주제인 '일상 속 행복의 발견'과 맞지 않다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 08 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 8] 정답 ②</span>
+      <span class="tag">난이도: 하</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      교과서 40쪽에 제시된 '상징의 문학적 효과'의 기본 개념을 올바르게 이해하고 있는지 점검하기 위해 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      상징을 쓰면 눈에 보이지 않는 사랑, 평화, 용기 등의 추상적인 생각을 구체적인 사물로 나타냄으로써 독자에게 생생한 인상을 주고, 작품의 의미를 더욱 깊고 풍부하게 음미할 수 있게 돕는다. 따라서 ②가 옳다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>① 상징은 설명문처럼 직접 말하지 않고 사물 뒤에 의미를 숨긴다.</li>
+        <li>③ 사물의 본래 뜻을 없애는 것이 아니라 새로운 상징적 의미를 더해 준다.</li>
+        <li>④ 독자가 상상할 수 있는 의미의 폭을 넓혀 준다.</li>
+        <li>⑤ 독자가 작품에 더 깊이 공감하도록 돕는다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 09 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 9] 정답 ④</span>
+      <span class="tag">난이도: 상</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      1단원 ⑶ 소단원의 성취 기준인 "소통 맥락과 수용자 참여 양상을 고려하여 상호 작용적 매체를 분석한다"를 실생활 매체에 적용할 수 있는지 평가하기 위함이다. 공적인 학교 누리집과 사적인 개인 블로그의 목적과 소통 방식의 차이를 정확하게 비교할 수 있는지 변별하고자 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      학교 누리집([자료 1])은 대회 안내나 학사 일정 등 학교 구성원이 공적 정보를 주고받는 공식적 공간이다. 반면 개인 블로그([자료 2])는 개인의 생각과 경험을 기록하는 공간이면서도 댓글, 공유, 저장을 통해 다른 사람들과 소통이 널리 퍼져 나가는 개방적 공간이다. 따라서 ④가 가장 적절하다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>① 두 자료 모두 댓글로 활발하게 소통하고 있다.</li>
+        <li>② [자료 1]이 공적 공간이고 [자료 2]가 사적 공간이다.</li>
+        <li>③ 누리집의 질문과 답변은 게시판에 공개되어 다른 학생도 볼 수 있다.</li>
+        <li>⑤ 개인 블로그라도 다른 사람의 저작권과 사생활을 반드시 지켜야 한다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 10 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 10] 정답 ⑤</span>
+      <span class="tag">난이도: 중</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      디지털 매체를 이용할 때 무심코 저지르기 쉬운 개인 정보 유출의 위험성을 비판적으로 생각하고, 자신의 개인 정보를 스스로 보호하는 태도를 기르도록 유도하기 위해 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      주연이는 블로그 해시태그에 자신이 사는 동네(달빛동), 학교(마음중학교), 학년과 반(1학년 3반), 실명(김주연)을 구체적으로 공개하였다. 누구나 볼 수 있는 인터넷 공간에 이러한 민감한 정보를 노출하면 사생활 침해나 범죄의 표적이 될 수 있으므로 ⑤가 올바른 지적이다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>①, ②, ③, ④는 개인 정보 유출의 위험성을 잘못 이해한 진술이다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 11 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 11] 정답 ②</span>
+      <span class="tag">난이도: 상</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      교과서 45쪽에 제시된 매체 발달 흐름(인쇄 매체 ➔ 방송 매체 ➔ 인터넷 ➔ 모바일 기기)에 따른 인간 소통 방식의 변화를 이해하고 있는지 평가하기 위함이다. 시간과 공간의 한계를 벗어나 누구나 실시간으로 소통할 수 있게 된 현대 매체의 특성을 파악하도록 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      인쇄 매체의 대량 인쇄, 방송 매체의 대중 전달을 거쳐 스마트폰과 모바일 인터넷이 보급되면서, 시간과 공간의 제약 없이 언제 어디서나 실시간으로 정보를 주고받고 공유할 수 있게 되었다. 따라서 이를 바르게 설명한 ②가 옳다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>① 인쇄 매체는 실시간 음성 소통 매체가 아니다.</li>
+        <li>③ 전통적인 방송 매체는 일방향으로 정보를 전달하는 매체였다.</li>
+        <li>④ 스마트폰의 등장으로 정보 전달 속도가 매우 빨라졌다.</li>
+        <li>⑤ 인터넷의 발달로 누구나 정보를 만들고 공유할 수 있게 되었다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 12 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 12] 정답 ③</span>
+      <span class="tag">난이도: 상</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      교과서에 나오는 '매체 이용 윤리 수칙(저작권 준수, 초상권 존중, 개인 정보 보호, 올바른 정보 공유)'을 실제 생활 사례에 대입하여 올바른 판단을 내릴 수 있는지 실천적 역량을 변별하기 위해 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      [민우]: 인터넷 자료의 원작자와 출처를 밝혀 저작권을 잘 지켰다. (O)<br>
+      [서연]: 친구의 동의 없이 우스꽝스러운 사진을 SNS에 올려 초상권을 침해했다. (X)<br>
+      [재현]: 확인되지 않은 소문을 검증 없이 퍼뜨려 허위 사실 유포에 해당한다. (X)<br>
+      [수아]: 무료 이용이 허락된 자유 이용 저작물을 규칙에 맞게 사용했다. (O)<br>
+      따라서 바르게 행동한 학생은 [민우], [수아]이므로 ③이 정답이다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>① [서연]은 초상권을 침해하였다.</li>
+        <li>② [서연]과 [재현] 모두 윤리를 어겼다.</li>
+        <li>④ [재현]은 허위 사실을 퍼뜨렸다.</li>
+        <li>⑤ [재현]이 포함되어 있어 오답이다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 13 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 13] 정답 ①</span>
+      <span class="tag">난이도: 상</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      2단원 ⑴ 소단원의 성취 기준인 "대중 매체와 개인 인터넷 방송의 특성과 영향력을 비교한다"를 평가하기 위함이다. 두 매체의 장단점을 파악하고, 정보를 무조건 믿지 않고 비판적으로 따져보는 주체적인 태도가 필요함을 이해했는지 점검하고자 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      대중 매체는 전문 조직과 심의를 거치므로 비교적 신뢰성이 높지만 특정 관점으로 치우칠 수 있고, 개인 인터넷 방송은 소통이 빠르고 자유롭지만 자극적인 가짜 뉴스가 유통될 수 있다. 따라서 수용자는 어떤 매체를 이용하든 정보의 사실 여부를 비판적으로 검토해야 하므로 ①이 가장 적절하다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>② 대중 매체도 오보나 편향이 있을 수 있으므로 비판적으로 봐야 한다.</li>
+        <li>③ 개인 방송이라도 남을 비방하거나 가짜 뉴스를 퍼뜨리면 처벌을 받는다.</li>
+        <li>④ 실시간 반응과 소통은 개인 인터넷 방송의 대표적인 장점이다.</li>
+        <li>⑤ 알고리즘 추천은 이용자가 좋아하는 것만 반복해서 보여 주어 생각을 편협하게 만들 수 있다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 14 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 14] 정답 ④</span>
+      <span class="tag">난이도: 중</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      2단원 ⑵ 소단원에 실린 김청연의 《왜요, 그 말이 어때서요?》를 바탕으로, 무심코 써 오던 차별·혐오 표현을 '낯설게 보기'를 통해 발견하고 이를 배려의 대체어로 바꿀 수 있는지 점검하기 위해 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      ㉠ '벙어리장갑': 청각·언어 장애인을 비하하는 말이 들어 있어 '손모아장갑'으로 바꾸어야 할 차별어이다.<br>
+      ㉡ '중2병': 청소년기의 성장통에 '병'을 붙여 사춘기 청소년을 비정상으로 취급하는 혐오 표현이다.<br>
+      ㉢ '결정 장애': 결정을 망설이는 태도에 '장애'를 붙여 장애인을 비하하는 차별 표현이다.<br>
+      ㉣ '손모아장갑': 차별 표현을 순화하여 만든 바람직한 대체어이다.<br>
+      따라서 지양해야 할 표현은 ㉠, ㉡, ㉢이므로 ④가 정답이다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>①, ③, ⑤ ㉣은 순화된 좋은 대체어이다.</li>
+        <li>② ㉠ 역시 장애인 비하 표현이므로 포함되어야 한다.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 해설 15 -->
+  <div class="expl-card">
+    <div class="expl-card-header">
+      <span>[문항 15] 정답 ⑤</span>
+      <span class="tag">난이도: 중</span>
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 문제를 낸 이유</span>
+      교과서에 실린 공익 광고의 비유적 메시지를 이해하고, 일상에서 친구들과 좋은 관계를 맺기 위해 필요한 '존중하며 말하기'의 가치를 바르게 이해하고 있는지 평가하기 위해 출제하였다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 정답 해설</span>
+      공익 광고는 스마트폰으로 가볍게 '툭' 보낸 장난 섞인 말이 피해자에게는 주먹으로 맞은 것과 같은 큰 상처를 준다는 것을 경고한다. 따라서 친구의 처지를 공감하고 존중하는 태도로 말할 때 갈등을 예방하고 신뢰를 쌓을 수 있음을 전하고 있으므로 ⑤가 정답이다.
+    </div>
+    <div class="expl-row">
+      <span class="expl-label">■ 오답 풀이</span>
+      <ul class="expl-wrong-list">
+        <li>①, ② 사이버 언어폭력은 피해자에게 지속적이고 심각한 상처를 준다.</li>
+        <li>③ 비난하는 말은 반발심만 키우므로 배려하고 격려하는 말을 써야 한다.</li>
+        <li>④ 상대를 존중하는 태도는 원만한 대화를 이끄는 성숙한 자세이다.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>\n

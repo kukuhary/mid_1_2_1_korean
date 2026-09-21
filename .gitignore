@@ -1,0 +1,10 @@
+# Temporary & log files
+*.bak
+*.tmp
+*.log
+__pycache__/
+*.pyc
+debug_out.txt
+err.txt
+preview_*.png
+.system_generated/
