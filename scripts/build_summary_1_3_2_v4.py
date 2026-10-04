@@ -1,0 +1,616 @@
+import os
+import shutil
+import subprocess
+import fitz
+
+def generate_clean_summary_v4():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    if os.path.basename(base_dir) == 'scripts':
+        base_dir = os.path.dirname(base_dir)
+    summary_dir = os.path.join(base_dir, '요약')
+    os.makedirs(summary_dir, exist_ok=True)
+
+    md_v4_path = os.path.join(summary_dir, '1단원_3-2단원_통합_핵심요약_v4.md')
+    html_path = os.path.join(summary_dir, '1단원_3-2단원_통합_핵심요약_v4.html')
+    pdf_path = os.path.join(summary_dir, '1단원_3-2단원_통합_핵심요약_v4.pdf')
+
+    md_content = """# 2026 중1 국어 2학기 중간고사 핵심 요약 노트 [v4]
+
+- **시험 범위**: 1단원 `(1) 길` · `(2) 사랑하는 별 하나` (12~41쪽) / 3단원 `(2) 품사의 종류와 특성` (122~149쪽)
+- **개정 핵심**: 상·하단 내용 중복 전면 제거, 불필요한 메타 문구 삭제, 주변부 활동 1줄 압축, 다이어그램(SVG) 대형 폰트(11.5~14.5pt) 및 핵심 4페이지 완결 조판
+
+---
+
+## Page 1. 1-(1) 비유와 운율 핵심 정리 & 수록 작품 (12~27쪽)
+- **다이어그램 1 (방사형 마인드맵)**: 비유(직유법·은유법·의인법) & 비유의 2대 효과 & 운율 형성 3요소 & 〈길〉 3연 함정
+- **본문 1. 김종상, 〈길〉 (14~15쪽)**: 1~5연 원문 및 비유 매핑, [함정] 2연 직유법 vs 3연 원관념 없이 보조관념(`포도알·포도송이·이 덩굴`)만 단독 제시
+- **본문 2. 윤동주, 〈햇비〉 (22쪽) · 안예은, 〈문어의 꿈〉 (23쪽) · 27쪽 어휘**: [함정] `아씨처럼`(=햇비) vs `옥수숫대처럼`(=아이들), `하늘 다리`(=무지개: 은유), 27쪽 어휘(`토실토실➔한들한들, 특수➔특성, 참견➔참신`)
+
+## Page 2. 1-(2) 상징의 원리와 수록 작품 (28~41쪽)
+- **다이어그램 2 (가지 분기형 맵)**: 상징의 원리(비유 vs 상징, 《소나기》 ‘대추’ 다의성) & 〈사랑하는 별 하나〉 1~2연 vs 3~4연 대칭 & 희곡 〈파랑새〉 서사 구조
+- **본문 1. 이성선, 〈사랑하는 별 하나〉 (30~31쪽)**: [함정] 1연 `별과 같은 사람`(직유법) vs 3연 `사랑하는 별 하나`(상징), `화안히`(시적 허용), `눈물짓듯 웃어 주는`(직유+의인)
+- **본문 2. 모리스 마테를링크, 〈파랑새〉 (36~37쪽) & 38·41쪽 어휘**: 행복의 나라·잠 깬 우리 집 원문 대사, 41쪽 필수 어휘(`우러르다·조잘대다·포르르`), 38쪽 명언 상징 1줄 요약
+
+## Page 3. 3-(2) 품사의 분류 체계와 9품사 핵심 정리 (122~135쪽)
+- **다이어그램 3 (9품사 마스터 가지 맵)**: 형태(불변어/가변어) ➔ 기능(5기능) ➔ 의미(9품사) 전체 계통 및 9품사 올인원 문장(`"앗! 그가 새 옷 둘을 아주 예쁘게 입는다"`)
+- **본문 1. 단어의 기준과 조사의 지위**: [함정] 조사는 자립성 없으나 앞말과 쉽게 분리되어 단어로 인정(`"그가"`=1어절, 2단어), 서술격 조사 `이다`는 유일한 가변어 조사
+- **본문 2. 교과서 129~134쪽 4대 필수 탐구 지문**: [함정] 129쪽 `빨간·노란`(형용사), 131쪽 느티나무 대명사(`이것·누가·그·이곳·거기`), 133쪽 폴 세잔 `하나의`(수사)·`이는`(대명사), 134쪽 양귀자 소설 동사 5개 vs 형용사 4개
+
+## Page 4. 3-(2) 품사 판별 공식 · 144쪽 어법 교정 · 담화별 효과 (136~149쪽)
+- **다이어그램 4 (방사형 킬러 판별 맵)**: 동사 vs 형용사 3대 판별법(현재 시제 `-ㄴ다/-는다`, 명령형 `-아라/-어라`, 청유형 `-자`) & 체언(수사·대명사) vs 관형사 구별 공식(조사 결합 유무)
+- **본문 1. 동사·형용사 겸용 다의어(`크다·밝다`) & 144쪽 어법 오류 3종 교정**: `나무가 큰다`(동사) vs `키가 크다`(형용사), `"옛부터"`(관형사 조사 결합 오류➔`옛날부터/예로부터`), `"마음이 예쁘자"`(형용사 청유형 오류➔`마음을 예쁘게 가꾸자`), `"그곳에 주차"`(대명사 지시 모순➔`다른 곳에 주차`)
+- **본문 2. 145~148쪽 담화별 품사 효과**: 《달 샤베트》(부사·의성·의태어➔생생한 전달) vs 폭염 안전 안내 문자(명사 중심➔신속·정확·간결) 및 148쪽 연설가 4인 핵심 1줄 요약
+"""
+    with open(md_v4_path, 'w', encoding='utf-8') as f:
+        f.write(md_content)
+
+    html_content = """<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>2026 중1 국어 2학기 중간고사 핵심 요약 노트 [v4]</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 6mm 9mm 6mm 9mm;
+    @bottom-center {
+      content: "- " counter(page) " -";
+      font-size: 10pt;
+      font-family: 'Malgun Gothic', sans-serif;
+      font-weight: bold;
+      color: #000;
+    }
+  }
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  body {
+    font-family: 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
+    color: #000;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    font-size: 11.4pt;
+    line-height: 1.66;
+    letter-spacing: 0.85px;
+    word-break: keep-all;
+  }
+  .page-section {
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .page-section:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+  /* 깔끔한 학생용 상단 타이틀 박스 (불필요한 조판 메타 문구 완전 삭제) */
+  .header-box {
+    border: 2.5px solid #000;
+    padding: 4px 12px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header-title {
+    font-size: 13.8pt;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 1.0px;
+  }
+  .header-scope {
+    font-size: 10.0pt;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    border: 1.5px solid #000;
+    padding: 2px 10px;
+    border-radius: 6px;
+    letter-spacing: 0.5px;
+  }
+  /* 소단원 배너 */
+  .unit-banner {
+    background-color: #000;
+    color: #fff;
+    font-size: 12.2pt;
+    font-weight: 900;
+    padding: 4px 12px;
+    margin: 0 0 5px 0;
+    border-radius: 7px;
+    letter-spacing: 1.0px;
+    line-height: 1.28;
+  }
+  /* SVG 다이어그램 박스 (불필요한 캡션 사족 제거 & 1:1 무축소 대형 글자) */
+  .diagram-box {
+    border: 2.5px solid #000;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 5px 8px;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .diagram-box svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .diagram-box svg text {
+    letter-spacing: 0.2px;
+  }
+  /* 하단 본문·원문·함정 정리 보드 (상단 다이어그램과 중복 제로!) */
+  .content-board {
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 6px 12px;
+    background-color: #fff;
+  }
+  .section-block {
+    margin-bottom: 6px;
+  }
+  .section-block:last-child {
+    margin-bottom: 0;
+  }
+  .section-title {
+    display: inline-block;
+    border: 2px solid #000;
+    background-color: #f0f0f0;
+    font-size: 11.6pt;
+    font-weight: 900;
+    padding: 2px 10px;
+    border-radius: 6px;
+    margin-bottom: 3px;
+    letter-spacing: 0.9px;
+    line-height: 1.35;
+  }
+  .item-list {
+    margin: 0;
+    padding-left: 14px;
+    border-left: 3px solid #000;
+    margin-left: 5px;
+  }
+  .item-row {
+    position: relative;
+    margin-bottom: 3px;
+    padding-left: 9px;
+    font-size: 11.2pt;
+    line-height: 1.66;
+    letter-spacing: 0.85px;
+  }
+  .item-row:last-child {
+    margin-bottom: 0;
+  }
+  .item-row::before {
+    content: "▪";
+    position: absolute;
+    left: -11px;
+    top: 0;
+    font-weight: 900;
+    color: #000;
+  }
+  .quote-box {
+    border-left: 3.5px solid #000;
+    background-color: #f8f8f8;
+    padding: 3px 9px;
+    margin: 2px 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 11.0pt;
+    line-height: 1.62;
+    letter-spacing: 0.8px;
+  }
+  .badge-freq {
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    font-size: 9.8pt;
+    font-weight: 900;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-right: 4px;
+    letter-spacing: 0.8px;
+    line-height: 1.3;
+    vertical-align: middle;
+  }
+  .badge-trap {
+    display: inline-block;
+    border: 2px solid #000;
+    background-color: #fff;
+    color: #000;
+    font-size: 9.8pt;
+    font-weight: 900;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-right: 4px;
+    letter-spacing: 0.8px;
+    line-height: 1.3;
+    vertical-align: middle;
+  }
+  .kw {
+    display: inline-block;
+    border: 1.5px solid #000;
+    background-color: #eee;
+    padding: 0px 5px;
+    border-radius: 5px;
+    font-weight: 900;
+    margin: 0 2px;
+    line-height: 1.38;
+  }
+</style>
+</head>
+<body>
+
+  <!-- =========================================================================
+       PAGE 1: 1-(1) 비유와 운율 핵심 구조도 + 수록 작품 3종 본문·함정 완벽 정리
+       ========================================================================= -->
+  <div class="page-section">
+    <div class="header-box">
+      <div class="header-title">2026 중1 국어 2학기 중간고사 핵심 요약 노트</div>
+      <div class="header-scope">시험 범위: 1단원(1·2) 12~41쪽 &amp; 3단원(2) 122~149쪽</div>
+    </div>
+
+    <div class="unit-banner">1-(1) 시의 비유와 운율 핵심 개념 &amp; 수록 작품 분석 (교과서 12~27쪽)</div>
+
+    <!-- 상단 다이어그램 1: 비유와 운율 핵심 개념 구조도 (하단 본문과 중복 없이 개념·공식만 시각화) -->
+    <div class="diagram-box">
+      <svg viewBox="0 0 700 198" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#000"/>
+          </marker>
+        </defs>
+        <!-- 중앙 코어 -->
+        <ellipse cx="350" cy="99" rx="82" ry="46" fill="#fff" stroke="#000" stroke-width="3.5"/>
+        <ellipse cx="350" cy="99" rx="75" ry="39" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,4"/>
+        <text x="350" y="93" font-family="Malgun Gothic" font-size="18.5" font-weight="900" text-anchor="middle">1-(1) 비유와</text>
+        <text x="350" y="118" font-family="Malgun Gothic" font-size="18.5" font-weight="900" text-anchor="middle">운율 공식</text>
+
+        <!-- 좌측: 3대 비유법 -->
+        <path d="M 276 76 L 246 40" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr1)"/>
+        <rect x="4" y="4" width="238" height="56" rx="15" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <text x="123" y="27" font-family="Malgun Gothic" font-size="17" font-weight="900" text-anchor="middle">① 직유법 [빈출]</text>
+        <text x="123" y="50" font-family="Malgun Gothic" font-size="15" font-weight="bold" text-anchor="middle">같이 · 처럼 · 듯이 · 인 양 연결</text>
+
+        <path d="M 268 99 L 246 99" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr1)"/>
+        <rect x="4" y="71" width="238" height="56" rx="15" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <text x="123" y="94" font-family="Malgun Gothic" font-size="17" font-weight="900" text-anchor="middle">② 은유법 [빈출]</text>
+        <text x="123" y="117" font-family="Malgun Gothic" font-size="15" font-weight="bold" text-anchor="middle">연결어 없이 'A는 B이다' 빗댐</text>
+
+        <path d="M 276 122 L 246 158" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr1)"/>
+        <rect x="4" y="138" width="238" height="56" rx="15" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <text x="123" y="161" font-family="Malgun Gothic" font-size="17" font-weight="900" text-anchor="middle">③ 의인법 [빈출]</text>
+        <text x="123" y="184" font-family="Malgun Gothic" font-size="15" font-weight="bold" text-anchor="middle">사물에 사람의 동작·감정 부여</text>
+
+        <!-- 우측: 비유의 효과 & 운율 3요소 & 비유 핵심 조건 -->
+        <path d="M 424 76 L 454 40" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr1)"/>
+        <rect x="458" y="4" width="238" height="56" rx="15" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <text x="577" y="27" font-family="Malgun Gothic" font-size="17" font-weight="900" text-anchor="middle">비유의 2대 표현 효과</text>
+        <text x="577" y="50" font-family="Malgun Gothic" font-size="15" font-weight="bold" text-anchor="middle">참신·생생한 느낌 / 구체적 인상</text>
+
+        <path d="M 432 99 L 454 99" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr1)"/>
+        <rect x="458" y="71" width="238" height="56" rx="15" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <text x="577" y="94" font-family="Malgun Gothic" font-size="17" font-weight="900" text-anchor="middle">운율(말의 가락) 3요소</text>
+        <text x="577" y="117" font-family="Malgun Gothic" font-size="15" font-weight="bold" text-anchor="middle">반복 · 음수율 · 의성어·의태어</text>
+
+        <path d="M 424 122 L 454 158" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr1)"/>
+        <rect x="458" y="138" width="238" height="56" rx="15" fill="#fff" stroke="#000" stroke-width="3.0"/>
+        <text x="577" y="161" font-family="Malgun Gothic" font-size="17" font-weight="900" text-anchor="middle">[함정] 비유의 성립 조건</text>
+        <text x="577" y="184" font-family="Malgun Gothic" font-size="15" font-weight="bold" text-anchor="middle">원관념과 보조관념의 '유사성'</text>
+      </svg>
+    </div>
+
+    <!-- 하단 본문·함정 정리 보드 (교과서 수록 원문 및 작품별 킬러 함정만 집중 배치) -->
+    <div class="content-board">
+      <div class="section-block">
+        <div class="section-title">1. 김종상, 〈길〉 (14~15쪽) — 1연~5연 본문 원문 및 비유 매핑 <span class="badge-freq">[빈출]</span></div>
+        <div class="item-list">
+          <div class="quote-box">
+            • <b>[1~2연]</b> “<b>길은 포도 덩굴</b>(은유) / 몇백 년이나 자라 땅덩이를 다 덮었다 // 이 덩굴 가지(작은 길)마다 / <b>포도송이 같은 마을</b>(직유)이 있고 / <b>포도알 같은 집들</b>(직유)이 달렸다”<br>
+            • <b>[3~5연]</b> “<b>포도알</b>(집)이 늘 때마다 <b>포도송이</b>(마을)는 커 가고 / <b>갈봄 없이</b>(사계절 내내) 자라 가는 <b>이 덩굴</b>(길)을 통하여 // 사람과 사람이 도와 가고 마을과 마을은 이어져서 // <b>세계는 한 덩이 과일로</b>(은유) / <b>토실토실</b>(의태어: 풍요·결실) 익어 가고 있는 것이다.”
+          </div>
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>2연 vs 3연 비유 방식 차이 (출제 1순위)</b> : <b>2연</b>은 원관념(`마을, 집들`)과 연결어(`같은`)가 모두 드러난 <b>[직유법]</b>이지만, <b>3연의 `포도알, 포도송이, 이 덩굴`</b>은 <b>원관념(`집, 마을, 길`)을 생략하고 보조 관념만으로 대상을 직접 가리킴!</b></div>
+          <div class="item-row"><b>주제 및 시각적 발상</b> : 집 ➔ 마을 ➔ 길 ➔ 세계로 <b>시선이 점층적 확대</b>되며, 서로 돕고 더불어 살아가는 공동체의 화합을 노래함 (참고: 12~13쪽 라온이 자기소개 = 자신을 <b>‘담요’</b>에 빗대어 친구를 따뜻하게 감싸 주는 성격 표현)</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-title">2. 윤동주, 〈햇비〉 (22쪽) · 안예은, 〈문어의 꿈〉 (23쪽) · 27쪽 필수 어휘 <span class="badge-trap">[함정]</span></div>
+        <div class="item-list">
+          <div class="quote-box">
+            • <b>〈햇비〉 원문</b> : “<b>아씨처럼</b>(직유) 나린다 <b>보슬보슬</b>(의태어) 햇비 / 맞아 주자 다 같이 <b>옥수숫대처럼 크게</b>(직유) 닷 자 엿 자 자라게 / <b>해님이 웃는다 나 보고 웃는다</b>(의인·반복) // <b>하늘 다리</b>(은유) 놓였다 <b>알롱알롱</b>(의태어) 무지개 / 노래하자 즐겁게 동무들아 이리 와 / <b>해님이 웃는다 즐거워 웃는다.</b>”
+          </div>
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>〈햇비〉 원관념 매핑 주의</b> : `아씨처럼`의 원관념은 <b>[햇비]</b>, `하늘 다리`의 원관념은 <b>[무지개]</b>(은유법)이나, <b>`옥수숫대처럼 크게`의 원관념은 햇비가 아니라 햇비를 맞으며 자라는 [우리(아이들)]임!</b></div>
+          <div class="item-row"><b>〈문어의 꿈〉 (23쪽)</b> : <b>‘꿈’을 ‘여행’에 비유(은유법)</b>하고, 문어의 피부색 변화 특성을 살려 <b>`~에 올라가면 나는 ~ 문어`</b> 문장 구조를 반복하여 경쾌한 운율을 형성함</div>
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>27쪽 어휘 오남용 교정</b> : ① 갈대가 <span class="kw">토실토실</span>(X: 살이 통통하게 찐 모양 ➔ <span class="kw">한들한들</span> O) &nbsp; ② <span class="kw">특수</span>를 살려(X ➔ <span class="kw">특성</span> O) &nbsp; ③ 표현이 <span class="kw">참견</span>하다(X ➔ 새롭게 산뜻한 <span class="kw">참신</span>하다 O)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 2: 1-(2) 상징의 원리와 수록 작품 (사랑하는 별 하나 · 파랑새)
+       ========================================================================= -->
+  <div class="page-section">
+    <div class="unit-banner">1-(2) 상징(象徵)의 원리와 수록 작품 분석 (교과서 28~41쪽)</div>
+
+    <!-- 상단 다이어그램 2: 상징의 원리 & 두 작품 핵심 대칭 구조 (좌➔우 가지 분기형 맵) -->
+    <div class="diagram-box">
+      <svg viewBox="0 0 700 214" xmlns="http://www.w3.org/2000/svg">
+        <!-- 좌측 루트 -->
+        <rect x="2" y="76" width="96" height="62" rx="10" fill="#f0f0f0" stroke="#000" stroke-width="3"/>
+        <text x="50" y="103" font-family="Malgun Gothic" font-size="16.2" font-weight="900" text-anchor="middle">1-(2) 상징</text>
+        <text x="50" y="126" font-family="Malgun Gothic" font-size="14.5" font-weight="bold" text-anchor="middle">원리·작품구조</text>
+
+        <!-- 1차 가지 1: 상징의 핵심 원리 -->
+        <path d="M 98 107 C 106 107, 108 42, 114 42 L 228 42" fill="none" stroke="#000" stroke-width="3"/>
+        <rect x="112" y="25" width="116" height="34" rx="8" fill="#fff" stroke="#000" stroke-width="2.2"/>
+        <text x="170" y="48" font-family="Malgun Gothic" font-size="15.0" font-weight="900" text-anchor="middle">상징 핵심 원리</text>
+
+        <path d="M 228 42 C 235 42, 237 18, 242 18 L 696 18" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="13" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">정의 : 원관념(생각·감정)을 숨기고 보조관념만 단독 제시</text>
+        <path d="M 228 42 L 696 42" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="37" font-family="Malgun Gothic" font-size="14.2" font-weight="900">[함정] 구별 : 비유(원·보조관념 공존) vs 상징(원관념 생략)</text>
+        <path d="M 228 42 C 235 42, 237 66, 242 66 L 696 66" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="61" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">다의성(《소나기》 대추) : 원관념 생략 ➔ 독자마다 다양하게 해석</text>
+
+        <!-- 1차 가지 2: <사랑하는 별 하나> 대칭 구조 -->
+        <path d="M 98 107 L 228 107" fill="none" stroke="#000" stroke-width="3"/>
+        <rect x="112" y="90" width="116" height="34" rx="8" fill="#fff" stroke="#000" stroke-width="2.2"/>
+        <text x="170" y="113" font-family="Malgun Gothic" font-size="14.2" font-weight="900" text-anchor="middle">사랑하는 별 하나</text>
+
+        <path d="M 228 107 C 235 107, 237 95, 242 95 L 696 95" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="90" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">1~2연 (~될 수 있을까) : [나 ➔ 타인] 위로 주는 별·하얀 들꽃</text>
+        <path d="M 228 107 C 235 107, 237 121, 242 121 L 696 121" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="116" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">3~4연 (~갖고 싶다) : [타인 ➔ 나] 나를 씻고 길 비추는 별</text>
+
+        <!-- 1차 가지 3: 희곡 <파랑새> 여정과 주제 -->
+        <path d="M 98 107 C 106 107, 108 174, 114 174 L 228 174" fill="none" stroke="#000" stroke-width="3"/>
+        <rect x="112" y="157" width="116" height="34" rx="8" fill="#fff" stroke="#000" stroke-width="2.2"/>
+        <text x="170" y="180" font-family="Malgun Gothic" font-size="15.0" font-weight="900" text-anchor="middle">희곡 〈파랑새〉</text>
+
+        <path d="M 228 174 C 235 174, 237 150, 242 150 L 696 150" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="145" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">꿈속 여정 : 추억·밤·숲(실패) ➔ 행복의 나라(일상 행복 깨달음)</text>
+        <path d="M 228 174 L 696 174" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="169" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">잠 깬 현실 : 내 방 새장 파랑새 발견 ➔ 아픈 이웃 소녀 병 치유</text>
+        <path d="M 228 174 C 235 174, 237 198, 242 198 L 696 198" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="193" font-family="Malgun Gothic" font-size="14.2" font-weight="900">핵심 주제 : 파랑새 = 진정한 행복 (일상 속 가까이 &amp; 나눔)</text>
+      </svg>
+    </div>
+
+    <!-- 하단 본문·함정 정리 보드 -->
+    <div class="content-board">
+      <div class="section-block">
+        <div class="section-title">1. 이성선, 〈사랑하는 별 하나〉 (30~31쪽) — 본문 구절 분석 및 킬러 함정 <span class="badge-trap">[함정]</span></div>
+        <div class="item-list">
+          <div class="quote-box">
+            • <b>[1~2연 원문]</b> “나도 <b>별과 같은 사람</b>(직유)이 될 수 있을까. / 외로워 쳐다보면 눈 마주쳐 마음 비추어 주는 그런 사람이 될 수 있을까. // 나도 <b>꽃</b>이 될 수 있을까. / 세상일이 괴로워 쓸쓸히 밖으로 나서는 날에 가슴에 <b>화안히</b>(시적 허용) 안기어 / <b>눈물짓듯 웃어 주는</b>(직유+의인) <b>하얀 들꽃</b>이 될 수 있을까.”<br>
+            • <b>[3~4연 원문]</b> “가슴에 <b>사랑하는 별 하나</b>(상징)를 갖고 싶다. / 외로워 부르면 다가오는 별 하나를 갖고 싶다. // <b>마음 어두운 밤 깊을수록</b>(시련·고통 심화) 우러러 쳐다보면 / 반짝이는 그 <b>맑은 눈빛으로 나를 씻어</b>(마음 정화) / <b>길을 비추어 주는</b>(삶의 방향 인도) 그런 <b>사람</b>을 하나 갖고 싶다.”
+          </div>
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>같은 시 속 [비유] vs [상징] 구별 (출제 1순위)</b> : 1연의 <b>`별과 같은 사람`</b>은 원관념(`사람`)과 연결어(`같은`)가 드러난 <b>[직유법(비유)]</b>이고, 3연의 <b>`사랑하는 별 하나`</b>는 원관념을 숨기고 보조관념(`별`)만 제시한 <b>[상징]</b>임!</div>
+          <div class="item-row"><b>주요 시어의 의미</b> : <span class="kw">화안히</span> = `환히`를 늘여 쓴 <b>시적 허용</b>(운율 형성 및 밝고 따뜻한 느낌 강조) &nbsp;|&nbsp; <span class="kw">눈물짓듯 웃어 주는</span> = 상대방의 슬픔에 <b>공감하며 따뜻하게 위로</b>하는 태도 &nbsp;|&nbsp; <span class="kw">마음 어두운 밤</span> ↔ <span class="kw">별·하얀 들꽃</span> (어둠과 밝음의 <b>대조</b>)</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-title">2. 모리스 마테를링크, 〈파랑새〉 (36~37쪽) 핵심 대사 원문 &amp; 29·38·41쪽 정리 <span class="badge-freq">[빈출]</span></div>
+        <div class="item-list">
+          <div class="quote-box">
+            • <b>[행복의 나라 대사]</b> “안녕! 우리들은 <b>너희 집에 사는 행복들</b>이야. 나는 <b>건강의 행복! 맑은 공기의 행복! 부모님을 사랑하는 행복! 봄의 행복! 엄마의 행복!</b> ... 우리들은 늘 사람들 곁에 있어. <b>사람들이 그걸 모를 뿐이지.</b>”<br>
+            • <b>[결말 대사]</b> “아, 파랑새다! 그렇게 찾았는데. <b>파랑새가 우리 집에 있었어!</b>” ➔ 이웃 소녀에게 선물한 뒤 새가 <b>포르르</b> 날아가자 틸틸이 말함: <b>“괜찮아. 내가 또 파랑새를 찾아 줄게. 파랑새는 우리 가까이에 있으니까.”</b>
+          </div>
+          <div class="item-row"><b>29쪽 《소나기》 ‘대추’ 상징 해석</b> : 소년이 이사 가기 전 건넨 ‘대추’ ➔ 다감이(<b>친하게 지내고 싶은 마음</b>) vs 현주(<b>몸 건강하라는 뜻</b>)처럼 다양하게 해석됨</div>
+          <div class="item-row"><b>41쪽 필수 어휘 &amp; 38쪽 명언 상징</b> : <span class="kw">우러르다</span>(위를 향해 고개를 쳐들다) · <span class="kw">조잘대다</span>(낮은 목소리로 빠르게 말하다) · <span class="kw">포르르</span>(작은 새가 날아오르는 모양) &nbsp;|&nbsp; <i>[38쪽 명언] 안중근(정의=소나무·새싹), 나폴레옹(도전=파도 헤치는 배), 헬렌 켈러(희망=아침 해·봄꽃), 테레사(존엄성=보석·꽃나무)</i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 3: 3-(2) 품사의 분류 체계와 9품사 마스터 트리 + 교과서 4대 탐구 본문
+       ========================================================================= -->
+  <div class="page-section">
+    <div class="unit-banner">3-(2) 품사의 3대 분류 기준과 9품사 체계 &amp; 교과서 탐구 본문 (122~135쪽)</div>
+
+    <!-- 상단 다이어그램 3: 9품사 전체 계통 + 올인원 문장 매핑 -->
+    <div class="diagram-box">
+      <svg viewBox="0 0 700 238" xmlns="http://www.w3.org/2000/svg">
+        <!-- 좌측 루트: 3대 기준 + 올인원 문장 -->
+        <rect x="2" y="64" width="102" height="110" rx="10" fill="#f0f0f0" stroke="#000" stroke-width="3"/>
+        <text x="53" y="88" font-family="Malgun Gothic" font-size="15.8" font-weight="900" text-anchor="middle">국어 9품사</text>
+        <text x="53" y="109" font-family="Malgun Gothic" font-size="13.2" font-weight="bold" text-anchor="middle">형태(2)·기능(5)</text>
+        <line x1="8" y1="118" x2="98" y2="118" stroke="#000" stroke-width="1.5" stroke-dasharray="4,2"/>
+        <text x="53" y="136" font-family="Malgun Gothic" font-size="12.5" font-weight="900" text-anchor="middle">"앗! 그가 새 옷</text>
+        <text x="53" y="152" font-family="Malgun Gothic" font-size="12.5" font-weight="900" text-anchor="middle">둘을 아주 예쁘게</text>
+        <text x="53" y="168" font-family="Malgun Gothic" font-size="12.5" font-weight="900" text-anchor="middle">입는다."</text>
+
+        <!-- 1. 체언 (불변어) -->
+        <path d="M 104 119 C 109 119, 111 40, 114 40 L 228 40" fill="none" stroke="#000" stroke-width="2.8"/>
+        <rect x="114" y="24" width="114" height="32" rx="7" fill="#fff" stroke="#000" stroke-width="2.2"/>
+        <text x="171" y="46" font-family="Malgun Gothic" font-size="14.8" font-weight="900" text-anchor="middle">체언 (불변어)</text>
+
+        <path d="M 228 40 C 235 40, 237 17, 242 17 L 696 17" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="12" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">① 명사 : 구체 대상(옷, 자두, 집) · 추상 대상(사랑, 노력, 희망)</text>
+        <path d="M 228 40 L 696 40" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="35" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">② 대명사 : 사람(그, 나, 누구) · 사물(이것, 이) · 장소(이곳, 거기)</text>
+        <path d="M 228 40 C 235 40, 237 63, 242 63 L 696 63" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="58" font-family="Malgun Gothic" font-size="14.2" font-weight="900">③ 수사 : 수량(둘, 하나) · 순서(첫째) + [함정] 조사 결합 가능!</text>
+
+        <!-- 2. 수식언 (불변어) -->
+        <path d="M 104 119 C 109 119, 111 100, 114 100 L 228 100" fill="none" stroke="#000" stroke-width="2.8"/>
+        <rect x="114" y="84" width="114" height="32" rx="7" fill="#fff" stroke="#000" stroke-width="2.2"/>
+        <text x="171" y="106" font-family="Malgun Gothic" font-size="14.8" font-weight="900" text-anchor="middle">수식언 (불변어)</text>
+
+        <path d="M 228 100 C 235 100, 237 88, 242 88 L 696 88" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="83" font-family="Malgun Gothic" font-size="14.2" font-weight="900">④ 관형사 : 체언만 수식 (새, 헌, 옛, 이, 그, 두) + [함정] 조사 불가!</text>
+        <path d="M 228 100 C 235 100, 237 112, 242 112 L 696 112" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="107" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">⑤ 부사 : 주로 용언 수식 (아주, 꼭꼭, 쌩쌩) + 문장('역시') 수식</text>
+
+        <!-- 3. 관계언 (조사) -->
+        <path d="M 104 119 L 228 140" fill="none" stroke="#000" stroke-width="2.8"/>
+        <rect x="114" y="124" width="114" height="32" rx="7" fill="#fff" stroke="#000" stroke-width="2.2"/>
+        <text x="171" y="146" font-family="Malgun Gothic" font-size="14.8" font-weight="900" text-anchor="middle">관계언 (조사)</text>
+
+        <path d="M 228 140 L 696 140" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="135" font-family="Malgun Gothic" font-size="14.2" font-weight="900">⑥ 조사 : 문법 관계(가, 을)·뜻 추가(도, 만) / [예외] '이다'(가변어)</text>
+
+        <!-- 4. 독립언 (불변어) -->
+        <path d="M 104 119 C 109 119, 111 174, 114 174 L 228 174" fill="none" stroke="#000" stroke-width="2.8"/>
+        <rect x="114" y="158" width="114" height="32" rx="7" fill="#fff" stroke="#000" stroke-width="2.2"/>
+        <text x="171" y="180" font-family="Malgun Gothic" font-size="14.8" font-weight="900" text-anchor="middle">독립언 (불변어)</text>
+
+        <path d="M 228 174 L 696 174" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="169" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">⑦ 감탄사 : 놀람·느낌(앗, 우아) · 부름(야, 여보) · 대답(네, 응)</text>
+
+        <!-- 5. 용언 (가변어) -->
+        <path d="M 104 119 C 109 119, 111 214, 114 214 L 228 214" fill="none" stroke="#000" stroke-width="2.8"/>
+        <rect x="114" y="198" width="114" height="32" rx="7" fill="#fff" stroke="#000" stroke-width="2.2"/>
+        <text x="171" y="220" font-family="Malgun Gothic" font-size="14.8" font-weight="900" text-anchor="middle">용언 (가변어)</text>
+
+        <path d="M 228 214 C 235 214, 237 202, 242 202 L 696 202" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="197" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">⑧ 동사 : 움직임·작용 (입는다, 먹다, 나와서, 되면, 벗고, 돌아간다)</text>
+        <path d="M 228 214 C 235 214, 237 228, 242 228 L 696 228" fill="none" stroke="#000" stroke-width="2"/>
+        <text x="245" y="223" font-family="Malgun Gothic" font-size="14.2" font-weight="bold">⑨ 형용사 : 성질·상태 (예쁘게, 빨간, 노란, 무뚝뚝하고, 싱거운, 없다)</text>
+      </svg>
+    </div>
+
+    <!-- 하단 본문·함정 정리 보드 -->
+    <div class="content-board">
+      <div class="section-block">
+        <div class="section-title">1. 단어(낱말)의 기준과 ‘조사’의 예외적 지위 &amp; 활용(어간·어미) <span class="badge-trap">[함정]</span></div>
+        <div class="item-list">
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>조사를 단어로 인정하는 이유 &amp; 단어 개수 세기</b> : 단어는 원칙적으로 <b>홀로 쓰일 수 있는 말(자립성)</b>이지만, <b>‘조사’는 자립할 수 있는 말 뒤에 붙어 쉽게 분리할 수 있으므로 단어로 인정함!</b> ➔ 예: `"앗! 그가 새 옷 둘을 아주 예쁘게 입는다"`는 <b>띄어쓰기(어절)는 8개</b>이지만, 조사(`가`, `을`)를 분리하면 <b>단어는 총 10개!</b></div>
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>유일한 가변어 조사 ‘이다’</b> : 관계언(조사)은 원칙적으로 <b>불변어</b>이나, 체언 뒤에 붙어 서술어 구실을 하는 <b>서술격 조사 `이다`(`이다, 이고, 이니, 이어서`)만 예외적으로 활용하는 [가변어]</b>임!</div>
+          <div class="item-row"><b>용언의 활용 구조</b> : 활용 시 형태가 변하지 않는 앞부분은 <span class="kw">어간</span>(`먹-`, `예쁘-`), 변하는 뒷부분은 <span class="kw">어미</span>(`-다, -고, -지`)이며, 사전에는 `어간 + -다` 형태인 <span class="kw">기본형</span>으로 등재됨</div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-title">2. 교과서 129~134쪽 4대 필수 탐구 본문 품사 정밀 해부 <span class="badge-freq">[빈출]</span></div>
+        <div class="item-list">
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>[129쪽 분류 예문] “준수가 빨간 자두와 노란 참외를 둘 다 먹었다.”</b> ➔ `빨간`(기본형 `빨갛다`), `노란`(기본형 `노랗다`)은 뒤에 오는 명사(`자두, 참외`)를 꾸며 주지만, <b>어미가 변하는 가변어이므로 관형사가 아니라 무조건 [형용사]</b>임! (`둘`=수사, `다`=부사)</div>
+          <div class="item-row"><b>[131쪽 느티나무 본문 대명사 5종 지시 대상]</b> : “정원 한가운데에 아주 큰 <b>느티나무</b>가 있다. <b>`이것`</b>(<b>느티나무</b>: 사물 대명사)을 언제 <b>`누가`</b>(<b>모르는 사람</b>: 미지칭 대명사) 심었는지는 알 수 없다. 옛날에 <b>한 노인</b>이 <b>`이곳`</b>(<b>느티나무가 있는 자리</b>: 장소 대명사)을 지나가다가 ... <b>`그`</b>(<b>한 노인</b>: 인칭 대명사)의 지팡이가 자라 ... <b>`거기`</b>(<b>정원</b>: 장소 대명사)에 모여서”</div>
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>[133쪽 폴 세잔 정물화 본문]</b> : “서로 다른 시점에서 본 대상을 <b>`하나`</b>의 장면에(조사 `의` 결합 ➔ <b>수사!</b>) ... <b>`이`</b>는 매우 독창적인 방법으로(보조사 `는` 결합 ➔ 관형사가 아니라 앞 내용을 가리키는 <b>대명사!</b>)”</div>
+          <div class="item-row"><b>[134쪽 양귀자 소설 〈길모퉁이에서 만난 사람〉 용언 분류]</b> : <b>[동사 5개]</b> <span class="kw">나와서, 되면, 벗고, 돌아간다, 나누는</span> &nbsp;vs&nbsp; <b>[형용사 4개]</b> <span class="kw">무뚝뚝하고, 뻣뻣하다, 싱거운, 없다</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       PAGE 4: 3-(2) 품사 킬러 판별 공식 + 144쪽 어법 교정 + 담화별 품사 효과
+       ========================================================================= -->
+  <div class="page-section">
+    <div class="unit-banner">3-(2) 품사 킬러 판별 공식 · 144쪽 어법 교정 · 담화별 효과 (136~149쪽)</div>
+
+    <!-- 상단 다이어그램 4: 동사 vs 형용사 & 체언 vs 관형사 1초 판별 공식 마인드맵 -->
+    <div class="diagram-box">
+      <svg viewBox="0 0 700 202" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arr4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#000"/>
+          </marker>
+        </defs>
+        <!-- 중앙 코어 -->
+        <ellipse cx="350" cy="101" rx="84" ry="47" fill="#fff" stroke="#000" stroke-width="3.5"/>
+        <ellipse cx="350" cy="101" rx="77" ry="40" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="8,4"/>
+        <text x="350" y="95" font-family="Malgun Gothic" font-size="18" font-weight="900" text-anchor="middle">품사 1초 판별</text>
+        <text x="350" y="120" font-family="Malgun Gothic" font-size="18" font-weight="900" text-anchor="middle">킬러 공식</text>
+
+        <!-- 좌측 3개: 동사 vs 형용사 3대 테스트 -->
+        <path d="M 274 78 L 246 42" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr4)"/>
+        <rect x="2" y="5" width="242" height="56" rx="15" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <text x="123" y="28" font-family="Malgun Gothic" font-size="16.5" font-weight="900" text-anchor="middle">① 현재 시제 (-ㄴ다/-는다)</text>
+        <text x="123" y="51" font-family="Malgun Gothic" font-size="14.5" font-weight="bold" text-anchor="middle">결합 O = 동사 / 불가 = 형용사</text>
+
+        <path d="M 266 101 L 246 101" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr4)"/>
+        <rect x="2" y="73" width="242" height="56" rx="15" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <text x="123" y="96" font-family="Malgun Gothic" font-size="16.5" font-weight="900" text-anchor="middle">② 명령형 어미 (-아라/-어라)</text>
+        <text x="123" y="119" font-family="Malgun Gothic" font-size="14.5" font-weight="bold" text-anchor="middle">먹어라!(동사O) / 예뻐라!(형용사X)</text>
+
+        <path d="M 274 124 L 246 160" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr4)"/>
+        <rect x="2" y="141" width="242" height="56" rx="15" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <text x="123" y="164" font-family="Malgun Gothic" font-size="16.5" font-weight="900" text-anchor="middle">③ 청유형 어미 (-자)</text>
+        <text x="123" y="187" font-family="Malgun Gothic" font-size="14.5" font-weight="bold" text-anchor="middle">먹자!(동사O) / 예쁘자!(형용사X)</text>
+
+        <!-- 우측 3개: 체언(수사·대명사) vs 관형사 판별 -->
+        <path d="M 426 78 L 454 42" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr4)"/>
+        <rect x="456" y="5" width="242" height="56" rx="15" fill="#fff" stroke="#000" stroke-width="3.0"/>
+        <text x="577" y="28" font-family="Malgun Gothic" font-size="16.5" font-weight="900" text-anchor="middle">[함정] 수사 vs 수 관형사</text>
+        <text x="577" y="51" font-family="Malgun Gothic" font-size="14.5" font-weight="bold" text-anchor="middle">둘을(조사O:수사) / 두 개(관형사)</text>
+
+        <path d="M 434 101 L 454 101" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr4)"/>
+        <rect x="456" y="73" width="242" height="56" rx="15" fill="#fff" stroke="#000" stroke-width="3.0"/>
+        <text x="577" y="96" font-family="Malgun Gothic" font-size="16.5" font-weight="900" text-anchor="middle">[함정] 대명사 vs 지시 관형사</text>
+        <text x="577" y="119" font-family="Malgun Gothic" font-size="14.5" font-weight="bold" text-anchor="middle">그는·이는(대명사) / 그·이(관형사)</text>
+
+        <path d="M 426 124 L 454 160" fill="none" stroke="#000" stroke-width="2.8" marker-end="url(#arr4)"/>
+        <rect x="456" y="141" width="242" height="56" rx="15" fill="#f5f5f5" stroke="#000" stroke-width="2.5"/>
+        <text x="577" y="164" font-family="Malgun Gothic" font-size="16.5" font-weight="900" text-anchor="middle">[함정] 관형사 vs 형용사</text>
+        <text x="577" y="187" font-family="Malgun Gothic" font-size="14.5" font-weight="bold" text-anchor="middle">새 옷(관형사) / 예쁜 옷(형용사)</text>
+      </svg>
+    </div>
+
+    <!-- 하단 본문·함정 정리 보드 -->
+    <div class="content-board">
+      <div class="section-block">
+        <div class="section-title">1. 문맥별 동사·형용사 겸용 단어(`크다·밝다`) &amp; 144쪽 실전 어법 오류 3종 교정 <span class="badge-trap">[함정]</span></div>
+        <div class="item-list">
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>문맥에 따라 품사가 달라지는 단어</b> : ① <b>`크다`</b> — “나무가 쑥쑥 <b>큰다</b>(`-ㄴ다` 결합 O / 자라다)” = <b>[동사]</b> vs “형은 키가 <b>크다</b>(`키가 큰다` X / 상태)” = <b>[형용사]</b> &nbsp;|&nbsp; ② <b>`밝다`</b> — “동창이 <b>밝는다</b>(`-는다` 결합 O / 날이 새다)” = <b>[동사]</b> vs “달빛이 <b>밝다</b>(`달빛이 밝는다` X / 상태)” = <b>[형용사]</b></div>
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>[144쪽 오류 ① : 신문 헤드라인] “옛부터 전해 내려온 전통 방식” (X)</b> ➔ <b>원인</b>: `옛`은 체언만 꾸미는 <b>관형사</b>이므로 뒤에 조사(`부터`)가 결합할 수 없음! ➔ <b>교정</b>: 명사에 조사를 결합한 <b>“옛날부터”</b> 또는 <b>“예로부터” (O)</b></div>
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>[144쪽 오류 ② : 나의 좌우명] “항상 마음이 예쁘자.” (X)</b> ➔ <b>원인</b>: `예쁘다`는 성질·상태를 나타내는 <b>형용사</b>이므로 청유형 어미(`-자`)나 명령형(`-어라`) 결합 불가! ➔ <b>교정</b>: 동사를 사용하여 <b>“항상 마음을 예쁘게 가꾸자(예뻐지자).” (O)</b></div>
+          <div class="item-row"><span class="badge-trap">[함정]</span> <b>[144쪽 오류 ③ : 주차 안내문] “놀이터 근처 주차 금지! ... 그곳에 주차해 주세요.” (X)</b> ➔ <b>원인</b>: 대명사 `그곳`이 앞 문장의 주차 금지 구역(`놀이터 근처`)을 가리켜 문맥이 모순됨! ➔ <b>교정</b>: <b>“다른 곳에(지정된 주차 구역에) 주차해 주세요.” (O)</b></div>
+        </div>
+      </div>
+
+      <div class="section-block">
+        <div class="section-title">2. 교과서 145~148쪽 담화 목적에 따른 품사 사용 효과 비교 <span class="badge-freq">[빈출]</span></div>
+        <div class="item-list">
+          <div class="quote-box">
+            • <b>[그림책 《달 샤베트》 (145쪽)]</b> “<b>아주아주</b> 무더운 여름날 밤... <b>너무너무</b> 더워서... 창문을 <b>꼭꼭</b> 닫고, 에어컨을 <b>쌩쌩</b>, 선풍기를 <b>씽씽</b> 틀며... 커다란 달이 <b>똑똑</b> 녹아내리고 있었습니다.” ➔ <b>[부사(의성어·의태어)]</b>를 집중 사용하여 장면을 <b>생생하고 실감 나게</b> 표현함<br>
+            • <b>[폭염 안전 안내 문자 (146쪽)]</b> “안전 안내, 오늘 10시 <b>폭염</b> 예정, 낮 동안 <b>외출 자제</b>, <b>물놀이</b> 안전 <b>유의</b> 바람.” ➔ 수식언(관형사·부사)을 빼고 <b>[명사]</b> 중심으로 작성하여 긴급 재난 정보를 <b>신속·정확·간결하게</b> 전달함 (<span class="badge-trap">[함정]</span> 재난 문자에 부사·감탄사 남발 시 신속성·신뢰도 하락!)
+          </div>
+          <div class="item-row"><b>148쪽 연설가 4인의 품사 전략 (1줄 핵심)</b> : ① <b>백범 김구</b>(`독립·민족` <b>명사 반복</b>➔독립 의지 강조) &nbsp; ② <b>스티브 잡스</b>(`대단한·멋진` <b>형용사 다수</b>➔감정에 호소·격려) &nbsp; ③ <b>말랄라</b>(`파괴되다` <b>동사</b> + `권리·교육` <b>추상명사</b>➔교육권 촉구) &nbsp; ④ <b>스파르시 샤</b>(`십오·백삼십` <b>수사 제시</b>➔객관적 사실성·설득력 확보)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+"""
+
+    with open(html_path, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+    print(f"[1] Saved HTML: {html_path} ({os.path.getsize(html_path)} bytes)")
+
+    chrome_path = r'C:\Program Files\Google\Chrome\Application\chrome.exe'
+    if not os.path.exists(chrome_path):
+        chrome_path = r'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
+
+    cmd = [
+        chrome_path,
+        '--headless=new',
+        '--disable-gpu',
+        '--no-pdf-header-footer',
+        f'--print-to-pdf={pdf_path}',
+        html_path
+    ]
+    res = subprocess.run(cmd, capture_output=True)
+    if os.path.exists(pdf_path) and os.path.getsize(pdf_path) > 0:
+        doc = fitz.open(pdf_path)
+        print(f"[2] Generated PDF: {pdf_path} ({len(doc)} pages)")
+        preview_dir = r'C:\Users\kkj\.gemini\antigravity\brain\f75f4039-dfb5-40ea-b50b-f93f45c08126'
+        os.makedirs(preview_dir, exist_ok=True)
+        for i in range(len(doc)):
+            pix = doc[i].get_pixmap(dpi=160)
+            pix.save(os.path.join(preview_dir, f'summary_v4_page{i+1}.png'))
+        doc.close()
+    else:
+        print("PDF generation failed:", res.stderr.decode('utf-8', errors='ignore'))
+
+if __name__ == '__main__':
+    generate_clean_summary_v4()

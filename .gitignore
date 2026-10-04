@@ -9,6 +9,7 @@ err.txt
 preview_*.png
 .system_generated/
 
-# 루트 대용량 교과서 원본 (교과서_기출/ 디렉토리에 보존됨) 및 사진
-/2022개정_중학교_국어*.pdf
+# 대용량 교과서 원본 및 사진
+2022개정_중학교_국어*.pdf
 KakaoTalk_*.jpg
+
